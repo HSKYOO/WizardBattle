@@ -1,44 +1,42 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro; // TextMeshPro 사용을 위해 필수!
 
 public class UIManager : MonoBehaviour
 {
-    [Header("HP Bar UI References (팀원이 만든 부품 연결)")]
-    [Tooltip("플레이어의 HP 바에 붙어있는 HPBarUI 컴포넌트")]
+    [Header("HP Bar UI References")]
     public HPBarUI playerHPBar;
-    
-    [Tooltip("허수아비(또는 적)의 HP 바에 붙어있는 HPBarUI 컴포넌트")]
     public HPBarUI targetHPBar;
-
-    [Header("Character Stats References")]
     public CharacterStats playerStats;
     public CharacterStats targetStats;
 
-    [Header("Spell Icons (기획서: Flag ON/OFF 컬러 전환용)")]
-    [Tooltip("하단 공격 마법 UI 이미지 [Q]")]
+    [Header("Spell Icons (기본 아이콘)")]
     public Image attackIcon;
-    [Tooltip("하단 방어 마법 UI 이미지 [W]")]
     public Image defenseIcon;
-    [Tooltip("하단 회복 마법 UI 이미지 [E]")]
     public Image healIcon;
 
+    [Header("Cooldown Overlays (시계방향 회전하는 검은색 반투명 Image)")]
+    public Image attackOverlay;
+    public Image defenseOverlay;
+    public Image healOverlay;
+
+    [Header("Cooldown Texts (남은 시간 표시용 TextMeshPro)")]
+    public TextMeshProUGUI attackText;
+    public TextMeshProUGUI defenseText;
+    public TextMeshProUGUI healText;
+
     [Header("Icon Color Settings")]
-    [Tooltip("Flag가 ON일 때 아이콘 색상 (기본: 원래 색상 100% 밝기)")]
     public Color activeColor = Color.white;
-    
-    [Tooltip("Flag가 OFF일 때 아이콘 색상 (기본: 어둡고 칙칙한 흑백/그레이 느낌)")]
-    public Color inactiveColor = new Color(0.3f, 0.3f, 0.3f, 1f);
+    public Color inactiveColor = new Color(0.3f, 0.3f, 0.3f, 1f); // BCI Flag OFF일 때 흑백 느낌
 
     [Header("BCI System Reference")]
     public BCIManager bciManager;
 
     private void Start()
     {
-        // 1. 플레이어와 타겟(적)의 체력 변경 이벤트에 팀원이 만든 HPBarUI의 업데이트 메서드를 연결!
         if (playerStats != null && playerHPBar != null)
         {
             playerStats.OnHPChanged.AddListener(playerHPBar.UpdateHPBar);
-            // 시작할 때 현재 체력으로 HP 바 초기화
             playerHPBar.UpdateHPBar(playerStats.CurrentHP, playerStats.maxHP);
         }
 
@@ -51,33 +49,54 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        // 2. 매 프레임마다 BCI Flag 상태를 확인하여 마법 아이콘 색상(컬러/흑백)을 실시간으로 변경 
-        UpdateSpellIconsVisual();
+        if (bciManager == null) return;
+
+        // 3개 마법 UI를 실시간으로 갱신
+        UpdateSingleSpellUI(BCIManager.SpellType.Attack, attackIcon, attackOverlay, attackText, bciManager.attackFlag);
+        UpdateSingleSpellUI(BCIManager.SpellType.Defense, defenseIcon, defenseOverlay, defenseText, bciManager.defenseFlag);
+        UpdateSingleSpellUI(BCIManager.SpellType.Heal, healIcon, healOverlay, healText, bciManager.healFlag);
     }
 
     /// <summary>
-    /// BCI Flag에 따라 마법 아이콘을 컬러(ON) 또는 흑백/어둡게(OFF) 처리하는 메서드 
+    /// 개별 마법 아이콘의 쿨타임 이펙트와 BCI Flag 상태를 통합 계산하는 함수
     /// </summary>
-    private void UpdateSpellIconsVisual()
+    private void UpdateSingleSpellUI(BCIManager.SpellType spellType, Image icon, Image overlay, TextMeshProUGUI text, bool isFlagOn)
     {
-        if (bciManager == null) return;
+        float remainingTime = bciManager.GetRemainingCooldown(spellType);
 
-        // 공격 아이콘 컬러/흑백 전환 
-        if (attackIcon != null)
+        // 1. [쿨타임 진행 중] 일 때
+        if (remainingTime > 0f)
         {
-            attackIcon.color = bciManager.attackFlag ? activeColor : inactiveColor;
+            // 오버레이와 텍스트를 활성화
+            if (overlay != null)
+            {
+                overlay.enabled = true;
+                // 남은 시간 비율(1.0 -> 0.0)에 따라 시계방향으로 검은색 영역이 줄어듦
+                overlay.fillAmount = bciManager.GetCooldownRatio(spellType);
+            }
+
+            if (text != null)
+            {
+                text.enabled = true;
+                // 소수점 첫째 자리까지 표시 (예: "2.5", "0.8")
+                text.text = remainingTime.ToString("F1");
+            }
+
+            // 쿨타임 중일 때는 아이콘 바탕색을 어둡게(흑백) 유지
+            if (icon != null) icon.color = inactiveColor;
         }
-
-        // 방어 아이콘 컬러/흑백 전환
-        if (defenseIcon != null)
+        // 2. [쿨타임이 끝났을 때]
+        else
         {
-            defenseIcon.color = bciManager.defenseFlag ? activeColor : inactiveColor;
-        }
+            // 오버레이와 텍스트를 숨김
+            if (overlay != null) overlay.enabled = false;
+            if (text != null) text.enabled = false;
 
-        // 회복 아이콘 컬러/흑백 전환
-        if (healIcon != null)
-        {
-            healIcon.color = bciManager.healFlag ? activeColor : inactiveColor;
+            // BCI Flag 상태에 따라 컬러(사용 가능) 또는 흑백(조건 미달)으로 변경
+            if (icon != null)
+            {
+                icon.color = isFlagOn ? activeColor : inactiveColor;
+            }
         }
     }
 }
