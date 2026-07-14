@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     public BCIManager bci;
     public SpellManager spellManager;
-    public CharacterStat stats;
+    public CharacterStats stats;
 
     void Update()
     {
