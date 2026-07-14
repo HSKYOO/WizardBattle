@@ -10,6 +10,10 @@ public class BCIManager : MonoBehaviour
     public float flagDuration = 2f;   // Flag 유지 시간
     public float cooldownDuration = 3f; // 쿨타임
 
+    public SpellIconUI attackIcon;
+    public SpellIconUI defenseIcon;
+    public SpellIconUI healIcon;
+
     private bool attackOnCooldown;
     private bool defenseOnCooldown;
     private bool healOnCooldown;
@@ -32,14 +36,23 @@ public class BCIManager : MonoBehaviour
     }
 
     void SetFlag(SpellType type, bool value)
+{
+    switch (type)
     {
-        switch (type)
-        {
-            case SpellType.Attack: attackFlag = value; break;
-            case SpellType.Defense: defenseFlag = value; break;
-            case SpellType.Heal: healFlag = value; break;
-        }
+        case SpellType.Attack: 
+            attackFlag = value; 
+            attackIcon.SetActive(value); 
+            break;
+        case SpellType.Defense: 
+            defenseFlag = value; 
+            defenseIcon.SetActive(value); 
+            break;
+        case SpellType.Heal: 
+            healFlag = value; 
+            healIcon.SetActive(value); 
+            break;
     }
+}
 
     // 스킬 사용 후 SpellManager가 호출해줄 쿨타임 시작 함수
     public void StartCooldown(SpellType type)
