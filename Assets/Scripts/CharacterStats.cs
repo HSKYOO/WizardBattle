@@ -8,6 +8,7 @@ public class CharacterStat : MonoBehaviour
     [Header("Health Settings")]
     [Tooltip("최대 체력 (기본값: 100)")]
     public int maxHP = 100;
+    public int startHP = 100; // 추가: 튜토리얼에서 바꿔 사용하기 위해 
     
     // 현재 체력 (외부에서 읽을 수는 있지만 수정은 메서드를 통해서만 가능)
     public int CurrentHP { get; private set; }
@@ -26,7 +27,7 @@ public class CharacterStat : MonoBehaviour
     private void Awake()
     {
         // 게임 시작 시 현재 체력을 최대 체력으로 초기화 
-        CurrentHP = maxHP;
+        CurrentHP = startHP;
     }
 
     private void Start()
@@ -73,6 +74,7 @@ public class CharacterStat : MonoBehaviour
     /// </summary>
     public void Heal(int amount)
     {
+        
         if (CurrentHP <= 0) return; // 이미 사망한 상태면 회복 불가
 
         CurrentHP += amount;
