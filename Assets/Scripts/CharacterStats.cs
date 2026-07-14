@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using System.Collections;
 
 
-public class CharacterStat : MonoBehaviour
+public class CharacterStats : MonoBehaviour
 {
     [Header("Health Settings")]
     [Tooltip("최대 체력 (기본값: 100)")]

@@ -3,8 +3,8 @@ using UnityEngine;
 public class SpellManager : MonoBehaviour
 {
     public BCIManager bci;
-    public CharacterStat playerStats;
-    public CharacterStat targetStats; // 허수아비
+    public CharacterStats playerStats;
+    public CharacterStats targetStats; // 허수아비
     public SceneController sceneController;
 
     public int attackDamage = 30;
