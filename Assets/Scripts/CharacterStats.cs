@@ -91,7 +91,7 @@ public class CharacterStats : MonoBehaviour
     /// 2초 동안 40의 체력을 서서히 회복하는 회복 마법용 메서드 
     /// SpellManager에서 이 메서드를 호출하면 됩니다.
     /// </summary>
-    public void StartHealOverTime(int totalHeal = 40, float duration = 2.0f)
+    public void StartHealOverTime(int totalHeal, float duration)
     {
         StartCoroutine(HealOverTimeCoroutine(totalHeal, duration));
     }
