@@ -1,16 +1,21 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject nextStageBtn;
+    private HashSet<string> usedSpells = new HashSet<string>();
+
+    public void OnSpellUsed(string spellName)
     {
-        
+        usedSpells.Add(spellName);
+        if (usedSpells.Count >= 3)
+            nextStageBtn.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GoToBattleScene()
     {
-        
+        SceneManager.LoadScene("BattleScene");
     }
 }
