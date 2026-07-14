@@ -8,7 +8,8 @@ public class SpellManager : MonoBehaviour
     public SceneController sceneController;
 
     public int attackDamage = 30;
-    public int healAmount = 30; // 고정 회복량
+    public int healAmount = 40; // 고정 회복량
+    public float healDuration = 2.0f; // 2초간 지속 회복
 
     public void CastAttack()
     {
@@ -32,7 +33,7 @@ public class SpellManager : MonoBehaviour
 
     public void CastHeal()
     {
-        playerStats.Heal(healAmount); // 즉시 30 회복 (지속 회복 원하면 StartHealOverTime(30, 2f) 사용)
+        playerStats.StartHealOverTime(healAmount, healDuration);
         bci.StartCooldown(BCIManager.SpellType.Heal);
         sceneController.OnSpellUsed("Heal");
     }
