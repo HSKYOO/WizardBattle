@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,10 +103,10 @@ TextureImporter:
       name: Boss-Photoroom_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2307
-        height: 1648
+        x: 17
+        y: 1262
+        width: 388
+        height: 340
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,11 +121,407 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_1
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 1264
+        width: 327
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d94e658ec41db947bd90a5fa7d57fc5
+      internalID: -525758448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_2
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 1264
+        width: 309
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d29e1065d05093d478457e8de153bd73
+      internalID: -533109431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_3
+      rect:
+        serializedVersion: 2
+        x: 1081
+        y: 1268
+        width: 306
+        height: 329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d5d7c065124ac947a1d001f271fb780
+      internalID: -586391951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_4
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 1273
+        width: 312
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1ef7c5929fd14f47a1a7e564a2fe10f
+      internalID: -2019835642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_5
+      rect:
+        serializedVersion: 2
+        x: 1711
+        y: 1272
+        width: 321
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c82756ca614c9aa4eb803f1e6d4273b6
+      internalID: 1421939674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_6
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 854
+        width: 394
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 956f600a4d513594fb0f5b371ec46958
+      internalID: -290150181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_7
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 856
+        width: 375
+        height: 364
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fbc0a47ad5808149a5866c001551391
+      internalID: 343713619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_8
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 856
+        width: 381
+        height: 365
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7c2457c1fc485249816aeb181a38409
+      internalID: -2109264626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_9
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 856
+        width: 387
+        height: 373
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69ebf865a41ee2247be758ba6966961e
+      internalID: 832316865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_10
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 434
+        width: 626
+        height: 358
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0a30421ea909424ba8881ea4e517f9a
+      internalID: -1052969558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_11
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 583
+        width: 234
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbfce8f236e045c49be0f9e8c03fe5a2
+      internalID: 1419135875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_12
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 570
+        width: 254
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a89e71fd954eb4f46b8d9db4e785cc46
+      internalID: -1921321365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_13
+      rect:
+        serializedVersion: 2
+        x: 1241
+        y: 430
+        width: 393
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4efe4fcff3e3f3646a33187c6f2556d2
+      internalID: -379605373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_14
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 430
+        width: 410
+        height: 374
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 238dc91cd33a07141ab7e61d3f7027f8
+      internalID: 89434513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_15
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 20
+        width: 296
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d7de1db081bde4580c3f9ab0f5639f
+      internalID: 385249575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_16
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 18
+        width: 301
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b6b114b96d986b40bda7e7f55c21c61
+      internalID: 1322252092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_17
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 11
+        width: 329
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cef36da6016fb2045929e4aad5e04bd6
+      internalID: -695588472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-Photoroom_18
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 20
+        width: 347
+        height: 355
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 783ce36a0fdea2b4ba5184d3f763a11c
+      internalID: 325286347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2891f7cef61e25c4db781ac546f82d6f
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +532,24 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Boss-Photoroom_0: -6347446334606197877
+      Boss-Photoroom_1: -525758448
+      Boss-Photoroom_10: -1052969558
+      Boss-Photoroom_11: 1419135875
+      Boss-Photoroom_12: -1921321365
+      Boss-Photoroom_13: -379605373
+      Boss-Photoroom_14: 89434513
+      Boss-Photoroom_15: 385249575
+      Boss-Photoroom_16: 1322252092
+      Boss-Photoroom_17: -695588472
+      Boss-Photoroom_18: 325286347
+      Boss-Photoroom_2: -533109431
+      Boss-Photoroom_3: -586391951
+      Boss-Photoroom_4: -2019835642
+      Boss-Photoroom_5: 1421939674
+      Boss-Photoroom_6: -290150181
+      Boss-Photoroom_7: 343713619
+      Boss-Photoroom_8: -2109264626
+      Boss-Photoroom_9: 832316865
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
