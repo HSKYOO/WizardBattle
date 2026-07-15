@@ -24,6 +24,16 @@ public class BCIManager : MonoBehaviour
     [Tooltip("OpenVibe에서 데이터를 받아오는 LSL4Unity의 FloatInlet 스크립트를 연결하세요!")]
     public FloatInlet eegInlet; 
 
+    [Header("LSL 3-Stream Connections")]
+    [Tooltip("OpenVibe의 'LSL Export [8-13] attack' 상자와 연결된 FloatInlet")]
+    public FloatInlet attackInlet;
+    
+    [Tooltip("OpenVibe의 'LSL Export [13-30]' (방어) 상자와 연결된 FloatInlet")]
+    public FloatInlet defenseInlet;
+    
+    [Tooltip("OpenVibe의 'LSL Export [8-13] heal' 상자와 연결된 FloatInlet")]
+    public FloatInlet healInlet;
+
     // UIManager의 게이지와 남은 시간 출력을 위한 float 타이머
     private float attackCooldownTimer = 0f;
     private float defenseCooldownTimer = 0f;
