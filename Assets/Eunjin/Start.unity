@@ -1321,7 +1321,7 @@ MonoBehaviour:
   inactiveColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   startSceneName: Start
   practiceSceneName: Test
-  battleSceneName: Game
+  battleSceneName: Battle
   victoryEndSceneName: End
   defeatEndSceneName: DefeatEnd
 --- !u!4 &1554918421

@@ -23,6 +23,8 @@ public class SpellManager : MonoBehaviour
 
     public void CastAttack()
 {
+    StartCoroutine(FireballAttack());
+
     targetStats.TakeDamage(attackDamage);
     if (bci != null) bci.StartCooldown(BCIManager.SpellType.Attack);
     if (sceneController != null) sceneController.OnSpellUsed("Attack");
@@ -31,7 +33,15 @@ public class SpellManager : MonoBehaviour
 public void CastDefense()
 {
     playerStats.SetInvulnerable(true);
+
+    if (defenseEffect != null)
+    {
+        defenseEffect.transform.position = playerStats.transform.position;
+        defenseEffect.SetActive(true);
+    }
+
     Invoke(nameof(EndDefense), 1f);
+
     if (bci != null) bci.StartCooldown(BCIManager.SpellType.Defense);
     if (sceneController != null) sceneController.OnSpellUsed("Defense");
 }
@@ -39,6 +49,15 @@ public void CastDefense()
 public void CastHeal()
 {
     playerStats.StartHealOverTime(healAmount, healDuration);
+
+    if (healEffect != null)
+    {
+        healEffect.transform.position = playerStats.transform.position;
+        healEffect.SetActive(true);
+    }
+
+    Invoke(nameof(EndHealEffect), healDuration);
+
     if (bci != null) bci.StartCooldown(BCIManager.SpellType.Heal);
     if (sceneController != null) sceneController.OnSpellUsed("Heal");
 }
