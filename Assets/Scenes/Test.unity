@@ -740,6 +740,104 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &542013612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 542013617}
+  - component: {fileID: 542013616}
+  - component: {fileID: 542013615}
+  - component: {fileID: 542013614}
+  - component: {fileID: 542013613}
+  m_Layer: 0
+  m_Name: BCI_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &542013613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542013612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ac7780c0012a3428e148a56eb18181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatInlet
+  streamName: HealStream
+--- !u!114 &542013614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542013612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ac7780c0012a3428e148a56eb18181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatInlet
+  streamName: DefenseStream
+--- !u!114 &542013615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542013612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ac7780c0012a3428e148a56eb18181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatInlet
+  streamName: AttackStream
+--- !u!114 &542013616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542013612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e899ea6c88a76d042878801e2d650787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BCIManager
+  attackFlag: 0
+  defenseFlag: 0
+  healFlag: 0
+  flagDuration: 2
+  cooldownDuration: 3
+  attackIcon: {fileID: 455543827}
+  defenseIcon: {fileID: 943485696}
+  healIcon: {fileID: 2012766105}
+  eegInlet: {fileID: 0}
+  attackInlet: {fileID: 542013615}
+  defenseInlet: {fileID: 542013614}
+  healInlet: {fileID: 542013613}
+--- !u!4 &542013617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542013612}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.99434, y: -1.06781, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &581034129
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,58 +975,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &604859368
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 604859370}
-  - component: {fileID: 604859369}
-  m_Layer: 0
-  m_Name: BCI_System
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &604859369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 604859368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e899ea6c88a76d042878801e2d650787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BCIManager
-  attackFlag: 0
-  defenseFlag: 0
-  healFlag: 0
-  flagDuration: 2
-  cooldownDuration: 3
-  attackIcon: {fileID: 455543827}
-  defenseIcon: {fileID: 943485696}
-  healIcon: {fileID: 2012766105}
---- !u!4 &604859370
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 604859368}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 799.4949, y: 677.11536, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &620443547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bc92c0bc613fc4e8a60822662bb537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellManager
-  bci: {fileID: 604859369}
+  bci: {fileID: 0}
   playerStats: {fileID: 1279026843}
   targetStats: {fileID: 236283196}
   sceneController: {fileID: 1783935413}
@@ -2109,7 +2155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d42bf0e47c00c45a93adf2752995f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  bci: {fileID: 604859369}
+  bci: {fileID: 0}
   spellManager: {fileID: 643786331}
   stats: {fileID: 1279026843}
   ignoreBCIFlags: 0
@@ -2446,7 +2492,8 @@ MonoBehaviour:
   startSceneName: StartScene
   practiceSceneName: PracticeScene
   battleSceneName: BattleScene
-  endSceneName: EndScene
+  victoryEndSceneName: End
+  defeatEndSceneName: DefeatEnd
 --- !u!4 &1783935414
 Transform:
   m_ObjectHideFlags: 0
@@ -3107,10 +3154,10 @@ SceneRoots:
   - {fileID: 1924579976}
   - {fileID: 141895388}
   - {fileID: 1796974542}
-  - {fileID: 604859370}
   - {fileID: 2000651072}
   - {fileID: 643786332}
   - {fileID: 1783935414}
   - {fileID: 468874757}
   - {fileID: 1299599111}
   - {fileID: 847889341}
+  - {fileID: 542013617}
