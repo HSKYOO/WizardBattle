@@ -22,12 +22,34 @@ public class SpellManager : MonoBehaviour
     public GameObject healEffect;
 
     public void CastAttack()
-    {
-        StartCoroutine(FireballAttack());
+{
+    targetStats.TakeDamage(attackDamage);
+    if (bci != null) bci.StartCooldown(BCIManager.SpellType.Attack);
+    if (sceneController != null) sceneController.OnSpellUsed("Attack");
+}
 
-        bci.StartCooldown(BCIManager.SpellType.Attack);
-        sceneController.OnSpellUsed("Attack");
-    }
+public void CastDefense()
+{
+    playerStats.SetInvulnerable(true);
+    Invoke(nameof(EndDefense), 1f);
+    if (bci != null) bci.StartCooldown(BCIManager.SpellType.Defense);
+    if (sceneController != null) sceneController.OnSpellUsed("Defense");
+}
+
+public void CastHeal()
+{
+    playerStats.StartHealOverTime(healAmount, healDuration);
+    if (bci != null) bci.StartCooldown(BCIManager.SpellType.Heal);
+    if (sceneController != null) sceneController.OnSpellUsed("Heal");
+}
+
+    // public void CastAttack()
+    // {
+    //     StartCoroutine(FireballAttack());
+
+    //     bci.StartCooldown(BCIManager.SpellType.Attack);
+    //     sceneController.OnSpellUsed("Attack");
+    // }
 
     private IEnumerator FireballAttack()
     {
@@ -77,22 +99,22 @@ public class SpellManager : MonoBehaviour
         fireball.SetActive(false);
     }
 
-    public void CastDefense()
-    {
-        // 플레이어 무적 상태 시작
-        playerStats.SetInvulnerable(true);
+    // public void CastDefense()
+    // {
+    //     // 플레이어 무적 상태 시작
+    //     playerStats.SetInvulnerable(true);
 
-        // 방어 애니메이션 활성화
-        if (defenseEffect != null)
-        {
-            defenseEffect.SetActive(true);
-        }
+    //     // 방어 애니메이션 활성화
+    //     if (defenseEffect != null)
+    //     {
+    //         defenseEffect.SetActive(true);
+    //     }
 
-        Invoke(nameof(EndDefense), 1f); // 1초 무적
+    //     Invoke(nameof(EndDefense), 1f); // 1초 무적
 
-        bci.StartCooldown(BCIManager.SpellType.Defense);
-        sceneController.OnSpellUsed("Defense");
-    }
+    //     bci.StartCooldown(BCIManager.SpellType.Defense);
+    //     sceneController.OnSpellUsed("Defense");
+    // }
 
     void EndDefense()
     {
@@ -106,20 +128,20 @@ public class SpellManager : MonoBehaviour
         }
     }
 
-    public void CastHeal()
-    {
-        playerStats.StartHealOverTime(healAmount, healDuration);
+    // public void CastHeal()
+    // {
+    //     playerStats.StartHealOverTime(healAmount, healDuration);
 
-        if (healEffect != null)
-        {
-            healEffect.SetActive(true);
-        }
+    //     if (healEffect != null)
+    //     {
+    //         healEffect.SetActive(true);
+    //     }
 
-        Invoke(nameof(EndHealEffect), healDuration);
+    //     Invoke(nameof(EndHealEffect), healDuration);
 
-        bci.StartCooldown(BCIManager.SpellType.Heal);
-        sceneController.OnSpellUsed("Heal");
-    }
+    //     bci.StartCooldown(BCIManager.SpellType.Heal);
+    //     sceneController.OnSpellUsed("Heal");
+    // }
 
     void EndHealEffect()
     {
