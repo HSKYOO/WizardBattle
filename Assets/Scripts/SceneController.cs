@@ -8,85 +8,173 @@ public class SceneController : MonoBehaviour
     [Header("Tutorial UI (Practice Scene)")]
     [Tooltip("3가지 마법을 모두 사용하면 활성화될 다음 스테이지 이동 버튼")]
     public Button nextStageBtn;
+
     public Image nextStageBtnImage;
+
     public Color activeColor = Color.white;
     public Color inactiveColor = new Color(0.4f, 0.4f, 0.4f, 1f);
 
-    // 팀원의 아이디어: 중복 없이 사용한 마법 종류를 기록하는 집합(HashSet)
-    private HashSet<string> usedSpells = new HashSet<string>();
+    // 중복 없이 사용한 마법 종류 기록
+    private readonly HashSet<string> usedSpells = new HashSet<string>();
 
     [Header("Scene Names")]
     public string startSceneName = "StartScene";
     public string practiceSceneName = "PracticeScene";
     public string battleSceneName = "BattleScene";
-    public string endSceneName = "EndScene";
+    public string victoryEndSceneName = "End";
+    public string defeatEndSceneName = "DefeatEnd";
 
-    void Start()
+    private void Start()
     {
-        SetButtonState(false); // 시작할 땐 비활성 + 회색
+        // PracticeScene에서만 버튼이 연결되어 있을 때 초기화
+        if (nextStageBtn != null || nextStageBtnImage != null)
+        {
+            SetButtonState(false);
+        }
     }
 
-    // =========================================================================
-    // 1. 튜토리얼 (Practice Scene) 마법 사용 감지 로직 
-    // =========================================================================
+    // =========================================================
+    // PracticeScene 튜토리얼 로직
+    // =========================================================
+
     public void OnSpellUsed(string spellName)
     {
+        if (string.IsNullOrWhiteSpace(spellName))
+        {
+            Debug.LogWarning("[SceneController] 비어 있는 마법 이름이 전달되었습니다.");
+            return;
+        }
+
         usedSpells.Add(spellName);
-        Debug.Log($"[SceneController] 튜토리얼 마법 시전: {spellName} (현재 체험한 마법: {usedSpells.Count}/3개)");
+
+        Debug.Log(
+            $"[SceneController] 튜토리얼 마법 시전: {spellName} " +
+            $"(현재 체험한 마법: {usedSpells.Count}/3개)"
+        );
 
         if (usedSpells.Count >= 3)
         {
             SetButtonState(true);
-            Debug.Log("[SceneController] 모든 마법 체험 완료! 다음 스테이지 이동 버튼이 활성화되었습니다.");
+            Debug.Log(
+                "[SceneController] 모든 마법 체험 완료! " +
+                "다음 스테이지 버튼이 활성화되었습니다."
+            );
         }
     }
 
-    void SetButtonState(bool isActive)
+    private void SetButtonState(bool isActive)
     {
-        if (nextStageBtn != null) nextStageBtn.interactable = isActive;
-        if (nextStageBtnImage != null) nextStageBtnImage.color = isActive ? activeColor : inactiveColor;
+        if (nextStageBtn != null)
+        {
+            nextStageBtn.interactable = isActive;
+        }
+
+        if (nextStageBtnImage != null)
+        {
+            nextStageBtnImage.color =
+                isActive ? activeColor : inactiveColor;
+        }
     }
 
-    // =========================================================================
-    // 2. 씬 이동 메서드 (팀원 메서드 호환 & GameManager 에러 방지 통합)
-    // =========================================================================
+    // =========================================================
+    // StartScene 버튼
+    // =========================================================
 
+    // 시작 버튼: 바로 게임씬으로 이동
+    public void StartGame()
+    {
+        LoadBattleScene();
+    }
+
+    // 튜토리얼 버튼: 테스트/연습씬으로 이동
+    public void StartTutorial()
+    {
+        LoadPracticeScene();
+    }
+
+    // =========================================================
+    // Scene 이동
+    // =========================================================
+
+    public void LoadBattleScene()
+    {
+        LoadSceneByName(battleSceneName);
+    }
+
+    public void LoadPracticeScene()
+    {
+        LoadSceneByName(practiceSceneName);
+    }
+
+    public void LoadStartScene()
+    {
+        LoadSceneByName(startSceneName);
+    }
+
+    public void LoadVictoryEndScene()
+    {
+        LoadSceneByName(victoryEndSceneName);
+    }
+
+    public void LoadDefeatEndScene()
+    {
+        LoadSceneByName(defeatEndSceneName);
+    }
+
+    // 기존 팀원 코드 호환용
     public void GoToBattleScene()
     {
         LoadBattleScene();
     }
 
-    public void LoadBattleScene()
-    {
-        Debug.Log($"[SceneController] '{battleSceneName}' 씬으로 이동합니다.");
-        SceneManager.LoadScene(battleSceneName);
-    }
-
+    // 기존 코드에서 LoadEndScene을 호출하는 경우 승리 엔딩으로 이동
     public void LoadEndScene()
     {
-        Debug.Log($"[SceneController] '{endSceneName}' 씬으로 이동합니다.");
-        SceneManager.LoadScene(endSceneName);
+        LoadVictoryEndScene();
     }
 
-    public void LoadPracticeScene()
+    // End / DefeatEnd의 AGAIN 버튼용
+    public void RestartGame()
     {
-        Debug.Log($"[SceneController] '{practiceSceneName}' 씬으로 이동합니다.");
-        SceneManager.LoadScene(practiceSceneName);
+        Debug.Log("[SceneController] 게임을 다시 시작합니다.");
+        LoadBattleScene();
     }
 
-    public void LoadStartScene()
+    private void LoadSceneByName(string sceneName)
     {
-        Debug.Log($"[SceneController] '{startSceneName}' 씬으로 이동합니다.");
-        SceneManager.LoadScene(startSceneName);
+        if (string.IsNullOrWhiteSpace(sceneName))
+        {
+            Debug.LogError(
+                "[SceneController] 이동할 Scene 이름이 비어 있습니다."
+            );
+            return;
+        }
+
+        if (!Application.CanStreamedLevelBeLoaded(sceneName))
+        {
+            Debug.LogError(
+                $"[SceneController] '{sceneName}' Scene을 불러올 수 없습니다. " +
+                "Scene 이름과 Build Profiles 등록 여부를 확인하세요."
+            );
+            return;
+        }
+
+        Debug.Log($"[SceneController] '{sceneName}' Scene으로 이동합니다.");
+        SceneManager.LoadScene(sceneName);
     }
+
+    // =========================================================
+    // 게임 종료
+    // =========================================================
 
     public void ExitGame()
     {
         Debug.Log("[SceneController] 게임을 종료합니다.");
-        #if UNITY_EDITOR
+
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#else
         Application.Quit();
-        #endif
+#endif
     }
 }
