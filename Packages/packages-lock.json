@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.labstreaminglayer.lsl4unity": {
+      "version": "file:LSL4Unity",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "13.0.5",
       "depth": 0,
