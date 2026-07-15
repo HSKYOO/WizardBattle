@@ -67,39 +67,54 @@ public class BCIManager : MonoBehaviour
     /// <summary>
     /// LSL 통신을 통해 OpenVibe 데이터 스트림을 실시간으로 읽고 Flag를 작동시킵니다.
     /// </summary>
+    /// <summary>
+    /// 3개의 파이프(Inlet)에서 각각 독립적으로 뇌파 데이터를 읽어와 마법을 트리거합니다.
+    /// </summary>
     private void ProcessBCIData()
     {
-        // LSL Inlet이 연결되지 않았거나, OpenVibe에서 전송되는 데이터가 없다면 작동하지 않음
-        if (eegInlet == null || !eegInlet.IsConnected) return;
-
-        // OpenVibe에서 전송된 가장 최근의 뇌파 파워 배열 데이터를 가져옵니다.
-        // (보통 채널 0번을 Alpha 대역(8~13Hz), 채널 1번을 Beta 대역(13~30Hz)으로 설정합니다)
-        float[] sample = eegInlet.GetLastSample();
-
-        if (sample != null && sample.Length >= 2)
+        // 1. 공격 마법 파이프 검사 (AttackStream)
+        if (attackInlet != null && attackInlet.IsConnected)
         {
-            float alphaPower = sample[0]; // 8~13 Hz 대역 파워 (눈 깜빡임 / 가만히 있기)
-            float betaPower = sample[1];  // 13~30 Hz 대역 파워 (혀 깨물기)
-
-            // 1. 공격 마법 (8~13Hz, Power >= 1600) -> 눈 깜빡임 감지
-            if (alphaPower >= 1600f && !IsOnCooldown(SpellType.Attack)) 
+            float[] attackSample = attackInlet.GetLastSample();
+            if (attackSample != null && attackSample.Length > 0)
             {
-                Debug.Log($"[BCI 감지] 눈 깜빡임 파워({alphaPower}) 도달 -> 공격 Flag ON!");
-                StartCoroutine(RaiseFlag(SpellType.Attack));
+                // 👇 [확인용 로그] 유니티 콘솔에서 내 뇌파의 진짜 숫자를 확인하세요!
+                Debug.Log($"👀 [실시간 공격 스트림 수치] : {attackSample[0]:F1}");
+
+                // 쿨타임이 아니고, 임계값(현재 1600f -> 내 뇌파 수치에 맞게 수정!) 이상이면 발동
+                if (!IsOnCooldown(SpellType.Attack) && attackSample[0] >= 1600f)
+                {
+                    Debug.Log($"🔥 [BCI 공격 감지] 파워: {attackSample[0]} -> 공격 Flag ON!");
+                    StartCoroutine(RaiseFlag(SpellType.Attack));
+                }
             }
+        }
 
-            // 2. 방어 마법 (13~30Hz, 800 <= Power <= 1500) -> 혀 깨물기 감지
-            if (betaPower >= 800f && betaPower <= 1500f && !IsOnCooldown(SpellType.Defense)) 
+        // 2. 방어 마법 파이프 검사 (DefenseStream)
+        if (defenseInlet != null && defenseInlet.IsConnected)
+        {
+            float[] defenseSample = defenseInlet.GetLastSample();
+            if (defenseSample != null && defenseSample.Length > 0)
             {
-                Debug.Log($"[BCI 감지] 혀 깨물기 파워({betaPower}) 도달 -> 방어 Flag ON!");
-                StartCoroutine(RaiseFlag(SpellType.Defense));
+                if (!IsOnCooldown(SpellType.Defense) && defenseSample[0] >= 800f && defenseSample[0] <= 1500f)
+                {
+                    Debug.Log($"🛡️ [BCI 방어 감지] 파워: {defenseSample[0]} -> 방어 Flag ON!");
+                    StartCoroutine(RaiseFlag(SpellType.Defense));
+                }
             }
+        }
 
-            // 3. 회복 마법 (8~13Hz, Power <= 200) -> 가만히 명상 상태 감지
-            if (alphaPower <= 200f && !IsOnCooldown(SpellType.Heal)) 
+        // 3. 회복 마법 파이프 검사 (HealStream)
+        if (healInlet != null && healInlet.IsConnected)
+        {
+            float[] healSample = healInlet.GetLastSample();
+            if (healSample != null && healSample.Length > 0)
             {
-                Debug.Log($"[BCI 감지] 명상 파워({alphaPower}) 도달 -> 회복 Flag ON!");
-                StartCoroutine(RaiseFlag(SpellType.Heal));
+                if (!IsOnCooldown(SpellType.Heal) && healSample[0] <= 200f)
+                {
+                    Debug.Log($"💚 [BCI 회복 감지] 파워: {healSample[0]} -> 회복 Flag ON!");
+                    StartCoroutine(RaiseFlag(SpellType.Heal));
+                }
             }
         }
     }
