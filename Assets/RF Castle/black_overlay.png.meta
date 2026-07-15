@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 621cecf4bbeca924280bf143e9a2681c
+guid: f48becdd93b68a445b778ab4013fcfe5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6347446334606197877
-    second: Boss-Photoroom_0
+      213: 6806369305720022541
+    second: black_overlay_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss-Photoroom_0
+      name: black_overlay_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2307
-        height: 1648
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b8b31fa503759e7a0800000000000000
-      internalID: -6347446334606197877
+      spriteID: d06609562d4157e50800000000000000
+      internalID: 6806369305720022541
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Boss-Photoroom_0: -6347446334606197877
+      black_overlay_0: 6806369305720022541
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
