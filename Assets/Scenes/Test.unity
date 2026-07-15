@@ -914,6 +914,10 @@ MonoBehaviour:
   attackIcon: {fileID: 455543827}
   defenseIcon: {fileID: 943485696}
   healIcon: {fileID: 2012766105}
+  eegInlet: {fileID: 0}
+  attackInlet: {fileID: 0}
+  defenseInlet: {fileID: 0}
+  healInlet: {fileID: 0}
 --- !u!4 &604859370
 Transform:
   m_ObjectHideFlags: 0
@@ -1648,6 +1652,104 @@ MonoBehaviour:
   iconRenderer: {fileID: 943485694}
   activeColor: {r: 1, g: 1, b: 1, a: 1}
   inactiveColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+--- !u!1 &950087793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 950087798}
+  - component: {fileID: 950087797}
+  - component: {fileID: 950087796}
+  - component: {fileID: 950087795}
+  - component: {fileID: 950087794}
+  m_Layer: 0
+  m_Name: BCI_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &950087794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950087793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ac7780c0012a3428e148a56eb18181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatInlet
+  streamName: HealStream
+--- !u!114 &950087795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950087793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ac7780c0012a3428e148a56eb18181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatInlet
+  streamName: DefenceStream
+--- !u!114 &950087796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950087793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ac7780c0012a3428e148a56eb18181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatInlet
+  streamName: AttackStream
+--- !u!114 &950087797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950087793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e899ea6c88a76d042878801e2d650787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BCIManager
+  attackFlag: 0
+  defenseFlag: 0
+  healFlag: 0
+  flagDuration: 2
+  cooldownDuration: 3
+  attackIcon: {fileID: 455543827}
+  defenseIcon: {fileID: 943485696}
+  healIcon: {fileID: 2012766105}
+  eegInlet: {fileID: 0}
+  attackInlet: {fileID: 950087796}
+  defenseInlet: {fileID: 950087795}
+  healInlet: {fileID: 950087794}
+--- !u!4 &950087798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950087793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.20336, y: 0.49736, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1009080773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2446,7 +2548,8 @@ MonoBehaviour:
   startSceneName: StartScene
   practiceSceneName: PracticeScene
   battleSceneName: BattleScene
-  endSceneName: EndScene
+  victoryEndSceneName: End
+  defeatEndSceneName: DefeatEnd
 --- !u!4 &1783935414
 Transform:
   m_ObjectHideFlags: 0
@@ -2673,7 +2776,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1917976461}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1783935413}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: GoToBattleScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1924579974
 GameObject:
   m_ObjectHideFlags: 0
@@ -3114,3 +3229,4 @@ SceneRoots:
   - {fileID: 468874757}
   - {fileID: 1299599111}
   - {fileID: 847889341}
+  - {fileID: 950087798}

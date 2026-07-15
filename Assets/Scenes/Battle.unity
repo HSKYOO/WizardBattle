@@ -129,6 +129,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2540627}
   - component: {fileID: 2540626}
+  - component: {fileID: 2540630}
+  - component: {fileID: 2540629}
+  - component: {fileID: 2540628}
   m_Layer: 0
   m_Name: BCI_System
   m_TagString: Untagged
@@ -157,6 +160,9 @@ MonoBehaviour:
   defenseIcon: {fileID: 180269729}
   healIcon: {fileID: 910874880}
   eegInlet: {fileID: 0}
+  attackInlet: {fileID: 2540630}
+  defenseInlet: {fileID: 2540629}
+  healInlet: {fileID: 2540628}
 --- !u!4 &2540627
 Transform:
   m_ObjectHideFlags: 0
@@ -172,6 +178,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2540628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ac7780c0012a3428e148a56eb18181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatInlet
+  streamName: HealStream
+--- !u!114 &2540629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ac7780c0012a3428e148a56eb18181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatInlet
+  streamName: DefenseStream
+--- !u!114 &2540630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ac7780c0012a3428e148a56eb18181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatInlet
+  streamName: AttackStream
 --- !u!1 &6531516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,6 +1140,60 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.4, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &783228168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 783228170}
+  - component: {fileID: 783228169}
+  m_Layer: 0
+  m_Name: bspell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &783228169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783228168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64bc92c0bc613fc4e8a60822662bb537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellManager
+  bci: {fileID: 0}
+  playerStats: {fileID: 2142953460}
+  targetStats: {fileID: 1038431657}
+  sceneController: {fileID: 1200142711}
+  attackDamage: 30
+  healAmount: 40
+  healDuration: 2
+  fireball: {fileID: 741950328}
+  defenseEffect: {fileID: 1663441629}
+  healEffect: {fileID: 727740988}
+--- !u!4 &783228170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783228168}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.20336, y: 0.49736, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2423,6 +2522,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1991722240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1991722241}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1991722241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991722240}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.20336, y: 0.49736, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2033300429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,6 +2742,7 @@ GameObject:
   - component: {fileID: 2142953459}
   - component: {fileID: 2142953461}
   - component: {fileID: 2142953460}
+  - component: {fileID: 2142953462}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -2738,6 +2869,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &2142953462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142953458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d480fa4b7e5ab4a4d9b82ea36c5c0e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  spellManager: {fileID: 783228169}
+  stats: {fileID: 2142953460}
+  actionPattern: 000000000000000001000000020000000000000001000000
+  actionInterval: 3.5
+  initialDelay: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2758,3 +2906,5 @@ SceneRoots:
   - {fileID: 1663441631}
   - {fileID: 727740991}
   - {fileID: 741950331}
+  - {fileID: 1991722241}
+  - {fileID: 783228170}
